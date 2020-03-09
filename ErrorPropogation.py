@@ -66,7 +66,7 @@ def main():
     elif (mode == 2):
         w = number_one / number_two
         delta_w = w * math.sqrt((number_one_un/number_one)**2 + (number_two_un/number_two)**2)
-        print(f"(%f ± %f)*(%f ± %f) = %f ± %f" % (number_one, number_one_un, number_two, number_two_un, w, delta_w))
+        print(f"(%f ± %f)/(%f ± %f) = %f ± %f" % (number_one, number_one_un, number_two, number_two_un, w, delta_w))
     
 while(True):
     main()        
