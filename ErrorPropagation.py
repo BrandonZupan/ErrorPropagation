@@ -1,7 +1,11 @@
 import math
 import sys
 
+from decimal import *
+
 def main():
+
+    getcontext().prec = 28
 
     #prompt for mode
     looper = True
@@ -33,14 +37,14 @@ def main():
     while(looper):
         print("Enter number 1, press enter, then enter its uncertainty")
         try:
-            number_one = float(input())
+            number_one = Decimal(input())
             print("±")
-            number_one_un = float(input())
+            number_one_un = Decimal(input())
         except:
             print("Invalid input")
             continue
         looper = False
-        print(f'%f ± %f' % (number_one, number_one_un))
+        print(f'{number_one} ± {number_one_un}')
 
     #get numbers
     looper = True
@@ -49,24 +53,24 @@ def main():
     while(looper):
         print("Enter number 2, press enter, then enter its uncertainty")
         try:
-            number_two = float(input())
+            number_two = Decimal(input())
             print("±")
-            number_two_un = float(input())
+            number_two_un = Decimal(input())
         except:
             print("Invalid input")
             continue
         looper = False
-        print(f'%f ± %f' % (number_two, number_two_un))
+        print(f'{number_two} ± {number_two_un}')
 
     if (mode == 1):
         w = number_one * number_two
-        delta_w = w * math.sqrt((number_one_un/number_one)**2 + (number_two_un/number_two)**2)
-        print(f"(%f ± %f)*(%f ± %f) = %f ± %f" % (number_one, number_one_un, number_two, number_two_un, w, delta_w))
+        delta_w = w * ((number_one_un/number_one)**2 + (number_two_un/number_two)**2).sqrt()
+        print(f"({number_one} ± {number_one_un})*({number_two} ± {number_two_un}) = {w} ± {delta_w}")
 
     elif (mode == 2):
         w = number_one / number_two
-        delta_w = w * math.sqrt((number_one_un/number_one)**2 + (number_two_un/number_two)**2)
-        print(f"(%f ± %f)/(%f ± %f) = %f ± %f" % (number_one, number_one_un, number_two, number_two_un, w, delta_w))
+        delta_w = w * ((number_one_un/number_one)**2 + (number_two_un/number_two)**2).sqrt()
+        print(f"({number_one} ± {number_one_un})/({number_two} ± {number_two_un}) = {w} ± {delta_w}")
     
 while(True):
     main()        
